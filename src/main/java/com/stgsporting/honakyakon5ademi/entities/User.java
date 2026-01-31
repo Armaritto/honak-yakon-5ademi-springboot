@@ -1,16 +1,16 @@
 package com.stgsporting.honakyakon5ademi.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.stgsporting.honakyakon5ademi.authentication.Authenticatable;
 import com.stgsporting.honakyakon5ademi.config.DatabaseEnum;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +28,10 @@ public class User extends BaseEntity implements Authenticatable {
     @ManyToOne
     @JoinColumn(name = DatabaseEnum.khedmaId, nullable = false)
     private Khedma khedma;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Response> responses;
 
     @Override
     public String getUsername() {
