@@ -31,7 +31,12 @@ public class DatabaseEnum {
 
     // RESPONSES TABLE
     public static final String responsesTable = "RESPONSES";
-    public static final String questionId = "questionId";
     public static final String userId = "userId";
+
+
+    //ANSWERS TABLE
+    public static final String answersTable = "ANSWERS";
+    public static final String responseId = "responseId";
+    public static final String questionId = "questionId";
     public static final String answer = "answer";
 }

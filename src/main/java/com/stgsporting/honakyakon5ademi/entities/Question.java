@@ -25,7 +25,7 @@ public class Question extends BaseEntity {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
-    private List<Response> responses;
+    private List<Answer> answers;
 
     @ManyToOne
     @JoinColumn(name = DatabaseEnum.quizId, nullable = false)

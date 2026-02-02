@@ -16,13 +16,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = DatabaseEnum.responsesTable)
 public class Response extends BaseEntity {
-    @Column(name = DatabaseEnum.answer, nullable = false)
-    private String answer;
-
-    @ManyToOne
-    @JoinColumn(name = DatabaseEnum.questionId, nullable = false)
-    private Question question;
-
     @ManyToOne
     @JoinColumn(name = DatabaseEnum.userId, nullable = false)
     private User user;
