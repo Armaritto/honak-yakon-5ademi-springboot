@@ -20,7 +20,7 @@ public class Answer extends BaseEntity {
     @JoinColumn(name = DatabaseEnum.questionId, nullable = false)
     private Question question;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = DatabaseEnum.responseId)
     private Response response;
 }
