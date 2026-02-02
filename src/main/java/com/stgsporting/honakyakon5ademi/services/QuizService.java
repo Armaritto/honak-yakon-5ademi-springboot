@@ -5,9 +5,11 @@ import com.stgsporting.honakyakon5ademi.entities.Question;
 import com.stgsporting.honakyakon5ademi.entities.Quiz;
 import com.stgsporting.honakyakon5ademi.exceptions.QuizNotFoundException;
 import com.stgsporting.honakyakon5ademi.repositories.QuizRepository;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +37,25 @@ public class QuizService {
 
     public QuizDTO getQuiz(Long id) {
         Optional<Quiz> quiz = quizRepository.findQuizById(id);
+        return getQuizDTO(quiz);
+    }
+
+    public QuizDTO getTodayQuiz() {
+        Optional<Quiz> quiz = quizRepository.findTodayQuiz();
+        return getQuizDTO(quiz);
+    }
+
+    public QuizDTO getPreviousQuiz(Date date) {
+        Optional<Quiz> quiz = quizRepository.findTopByDateBeforeOrderByDateDesc(date);
+        return getQuizDTO(quiz);
+    }
+
+    public QuizDTO getQuizByDate(Date date) {
+        Optional<Quiz> quiz = quizRepository.findQuizByDate(date);
+        return getQuizDTO(quiz);
+    }
+
+    private static @NonNull QuizDTO getQuizDTO(Optional<Quiz> quiz) {
         if (quiz.isPresent()) {
             QuizDTO dto = new QuizDTO();
             dto.setDate(quiz.get().getDate());

@@ -1,6 +1,6 @@
 package com.stgsporting.honakyakon5ademi.controllers;
 
-import com.stgsporting.honakyakon5ademi.dtos.QuizDTO;
+import com.stgsporting.honakyakon5ademi.dtos.QuizDateDTO;
 import com.stgsporting.honakyakon5ademi.services.QuizService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,5 +17,20 @@ public class QuizController {
     @GetMapping("")
     public ResponseEntity<Object> getQuiz(@RequestParam Long id) {
         return ResponseEntity.ok(quizService.getQuiz(id));
+    }
+
+    @GetMapping("/today")
+    public ResponseEntity<Object> getTodayQuiz() {
+        return ResponseEntity.ok(quizService.getTodayQuiz());
+    }
+
+    @GetMapping("/previous")
+    public ResponseEntity<Object> getPreviousQuiz(@RequestBody QuizDateDTO dto) {
+        return ResponseEntity.ok(quizService.getPreviousQuiz(dto.getDate()));
+    }
+
+    @GetMapping("/date")
+    public ResponseEntity<Object> getQuizByDate(@RequestBody QuizDateDTO dto) {
+        return ResponseEntity.ok(quizService.getQuizByDate(dto.getDate()));
     }
 }
