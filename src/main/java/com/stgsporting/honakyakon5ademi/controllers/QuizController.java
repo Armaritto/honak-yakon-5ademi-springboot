@@ -33,4 +33,9 @@ public class QuizController {
     public ResponseEntity<Object> getQuizByDate(@RequestBody QuizDateDTO dto) {
         return ResponseEntity.ok(quizService.getQuizByDate(dto.getDate()));
     }
+
+    @GetMapping("/solved")
+    public ResponseEntity<Object> getSolvedDates() {
+        return ResponseEntity.ok(quizService.getSolvedDates());
+    }
 }

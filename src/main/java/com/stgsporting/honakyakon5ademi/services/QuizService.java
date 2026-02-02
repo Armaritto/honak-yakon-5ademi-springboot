@@ -3,8 +3,10 @@ package com.stgsporting.honakyakon5ademi.services;
 import com.stgsporting.honakyakon5ademi.dtos.QuizDTO;
 import com.stgsporting.honakyakon5ademi.entities.Question;
 import com.stgsporting.honakyakon5ademi.entities.Quiz;
+import com.stgsporting.honakyakon5ademi.entities.User;
 import com.stgsporting.honakyakon5ademi.exceptions.QuizNotFoundException;
 import com.stgsporting.honakyakon5ademi.repositories.QuizRepository;
+import com.stgsporting.honakyakon5ademi.repositories.ResponseRepository;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,14 @@ import java.util.Optional;
 public class QuizService {
     public final QuizRepository quizRepository;
     public final QuestionService questionService;
+    public final UserService userService;
+    public final ResponseRepository responseRepository;
 
-    public QuizService(QuizRepository quizRepository, QuestionService questionService) {
+    public QuizService(QuizRepository quizRepository, QuestionService questionService, UserService userService, ResponseRepository responseRepository) {
         this.quizRepository = quizRepository;
         this.questionService = questionService;
+        this.userService = userService;
+        this.responseRepository = responseRepository;
     }
 
     public void createQuiz(QuizDTO quizDTO) {
@@ -63,5 +69,18 @@ public class QuizService {
             return dto;
         }
         throw new QuizNotFoundException("Quiz Not Found");
+    }
+
+    public List<Date> getSolvedDates() {
+        User user = (User) userService.getAuthenticatable();
+        List<Date> dates = new ArrayList<>();
+        
+        responseRepository.findByUser(user).forEach(response -> {
+            if (response.getQuiz() != null && response.getQuiz().getDate() != null) {
+                dates.add(response.getQuiz().getDate());
+            }
+        });
+        
+        return dates;
     }
 }
