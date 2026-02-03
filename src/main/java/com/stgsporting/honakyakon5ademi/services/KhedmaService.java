@@ -1,5 +1,6 @@
 package com.stgsporting.honakyakon5ademi.services;
 
+import com.stgsporting.honakyakon5ademi.dtos.KhedmasDTO;
 import com.stgsporting.honakyakon5ademi.dtos.ProgressDTO;
 import com.stgsporting.honakyakon5ademi.entities.Khedma;
 import com.stgsporting.honakyakon5ademi.exceptions.KhedmaNotFound;
@@ -17,9 +18,9 @@ public class KhedmaService {
         this.khedmaRepository = khedmaRepository;
     }
 
-    public Khedma getKhedmaByName(String name) {
+    public Khedma getKhedmaById(Long id) {
         return khedmaRepository
-                .findByName(name)
+                .findById(id)
                 .orElseThrow(
                         () -> new KhedmaNotFound("Khedma not found")
                 );
@@ -49,7 +50,12 @@ public class KhedmaService {
         return progressDTOS;
     }
 
-    public List<Khedma> getAllKhedmaNames() {
-        return khedmaRepository.findAll();
+    public List<KhedmasDTO> getAllKhedmaNames() {
+        List<Khedma> khedmas = khedmaRepository.findAll();
+        List<KhedmasDTO> khedmaNames = new ArrayList<>();
+        for (Khedma k : khedmas) {
+            khedmaNames.add(new KhedmasDTO(k.getId(),k.getName()));
+        }
+        return khedmaNames;
     }
 }

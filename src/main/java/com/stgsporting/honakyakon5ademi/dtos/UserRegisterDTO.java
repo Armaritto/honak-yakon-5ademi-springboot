@@ -6,14 +6,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRegisterDTO extends RegisterDTO {
-    private String khedma;
+    private Long khedmaId;
 
     @Override
     public String toString() {
         return "UserRegisterDTO{" +
                 "username='" + getUsername() + '\'' +
                 ", password='" + getPassword()  + '\'' +
-                ", khedma='" + khedma + '\'' +
+                ", khedma='" + khedmaId + '\'' +
                 '}';
     }
 }

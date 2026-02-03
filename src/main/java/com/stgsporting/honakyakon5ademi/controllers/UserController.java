@@ -17,14 +17,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Object> create(@RequestBody JSONObject body) {
-        UserRegisterDTO userDTO = new UserRegisterDTO();
-
-        userDTO.setUsername((String) body.get("username"));
-        userDTO.setPassword((String) body.get("password"));
-        userDTO.setKhedma((String) body.get("khedma"));
+    public ResponseEntity<Object> create(@RequestBody UserRegisterDTO userDTO) {
         userService.createUser(userDTO);
-
         return ResponseEntity.ok("User Created Successfully");
     }
 

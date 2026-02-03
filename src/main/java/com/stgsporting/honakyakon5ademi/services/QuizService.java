@@ -66,6 +66,7 @@ public class QuizService {
             QuizDTO dto = new QuizDTO();
             dto.setDate(quiz.get().getDate());
             dto.setQuestionDTOManually(quiz.get().getQuestions());
+            dto.setId(quiz.get().getId());
             return dto;
         }
         throw new QuizNotFoundException("Quiz Not Found");

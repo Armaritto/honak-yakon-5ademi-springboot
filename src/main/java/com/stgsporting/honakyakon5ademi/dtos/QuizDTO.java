@@ -11,13 +11,14 @@ import java.util.List;
 @Getter
 @Setter
 public class QuizDTO {
+    private Long id;
     private List<QuestionDTO> questionDTOS;
     private Date date;
 
     public void setQuestionDTOManually(List<Question> questions) {
         questionDTOS = new ArrayList<>();
         for (Question q : questions) {
-            questionDTOS.add(new QuestionDTO(q.getText(),q.getType()));
+            questionDTOS.add(new QuestionDTO(q.getId(), q.getText(),q.getType()));
         }
     }
 }

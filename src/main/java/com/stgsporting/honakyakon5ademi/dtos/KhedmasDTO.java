@@ -1,6 +1,5 @@
 package com.stgsporting.honakyakon5ademi.dtos;
 
-import com.stgsporting.honakyakon5ademi.enums.Type;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class QuestionDTO {
+public class KhedmasDTO {
     private Long id;
-    private String text;
-    private Type type;
+    private String name;
 }

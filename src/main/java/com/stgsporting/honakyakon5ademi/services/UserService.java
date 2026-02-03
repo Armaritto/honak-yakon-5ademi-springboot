@@ -67,7 +67,7 @@ public class UserService implements AuthenticatableService {
         validatePassword(userRegisterDTO.getPassword());
         user.setPassword(userRegisterDTO.getPassword());
 
-        Khedma khedma = khedmaService.getKhedmaByName(userRegisterDTO.getKhedma());
+        Khedma khedma = khedmaService.getKhedmaById(userRegisterDTO.getKhedmaId());
         user.setKhedma(khedma);
 
         save(user);

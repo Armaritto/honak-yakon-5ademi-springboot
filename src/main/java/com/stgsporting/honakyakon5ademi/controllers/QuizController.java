@@ -24,12 +24,12 @@ public class QuizController {
         return ResponseEntity.ok(quizService.getTodayQuiz());
     }
 
-    @GetMapping("/previous")
+    @PostMapping("/previous")
     public ResponseEntity<Object> getPreviousQuiz(@RequestBody QuizDateDTO dto) {
         return ResponseEntity.ok(quizService.getPreviousQuiz(dto.getDate()));
     }
 
-    @GetMapping("/date")
+    @PostMapping("/date")
     public ResponseEntity<Object> getQuizByDate(@RequestBody QuizDateDTO dto) {
         return ResponseEntity.ok(quizService.getQuizByDate(dto.getDate()));
     }
