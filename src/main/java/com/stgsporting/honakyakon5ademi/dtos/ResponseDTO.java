@@ -11,4 +11,5 @@ public class ResponseDTO {
     List<Long> questionIds;
     List<String> answerTexts;
     Long quizId;
+    Boolean checkbox;
 }

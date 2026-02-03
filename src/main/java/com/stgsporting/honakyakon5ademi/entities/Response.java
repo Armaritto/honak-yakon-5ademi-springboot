@@ -23,4 +23,7 @@ public class Response extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = DatabaseEnum.quizId, nullable = false)
     private Quiz quiz;
+
+    @Column(name = DatabaseEnum.checkbox, nullable = false)
+    private Boolean checkbox;
 }

@@ -39,6 +39,7 @@ public class ResponseService {
         if (quiz.isEmpty())
             throw new QuizNotFoundException("Quiz not found");
         response.setQuiz(quiz.get());
+        response.setCheckbox(responseDTO.getCheckbox());
         responseRepository.save(response);
         for(int i=0;i<responseDTO.getQuestionIds().size();i++) {
             Optional<Question> question = questionRepository.findQuestionById(responseDTO.getQuestionIds().get(i));

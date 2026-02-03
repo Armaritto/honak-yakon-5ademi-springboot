@@ -28,11 +28,11 @@ public class DatabaseEnum {
     public static final String quizTable = "QUIZZES";
     public static final String quizId = "quizId";
     public static final String date = "date";
+    public static final String checkbox = "checkbox";
 
     // RESPONSES TABLE
     public static final String responsesTable = "RESPONSES";
     public static final String userId = "userId";
-
 
     //ANSWERS TABLE
     public static final String answersTable = "ANSWERS";
