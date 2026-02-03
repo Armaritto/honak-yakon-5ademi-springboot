@@ -83,4 +83,11 @@ public class QuizService {
         
         return dates;
     }
+
+    public void deleteQuiz(Long id) {
+        Optional<Quiz> quiz = quizRepository.findQuizById(id);
+        if (quiz.isEmpty())
+            throw new QuizNotFoundException("Quiz not found");
+        quizRepository.delete(quiz.get());
+    }
 }

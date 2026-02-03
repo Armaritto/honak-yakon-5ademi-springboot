@@ -20,4 +20,9 @@ public class QuizAdminController {
         return ResponseEntity.ok("Quiz Created Successfully");
     }
 
+    @DeleteMapping("")
+    public ResponseEntity<Object> editQuiz(@RequestParam Long id) {
+        quizService.deleteQuiz(id);
+        return ResponseEntity.ok("Quiz Deleted Successfully");
+    }
 }
