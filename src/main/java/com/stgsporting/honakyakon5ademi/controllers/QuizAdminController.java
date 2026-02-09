@@ -1,5 +1,6 @@
 package com.stgsporting.honakyakon5ademi.controllers;
 
+import com.stgsporting.honakyakon5ademi.dtos.QuizCreateDTO;
 import com.stgsporting.honakyakon5ademi.dtos.QuizDTO;
 import com.stgsporting.honakyakon5ademi.services.QuizService;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class QuizAdminController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Object> createQuiz(@RequestBody QuizDTO quizDTO) {
+    public ResponseEntity<Object> createQuiz(@RequestBody QuizCreateDTO quizDTO) {
         quizService.createQuiz(quizDTO);
         return ResponseEntity.ok("Quiz Created Successfully");
     }

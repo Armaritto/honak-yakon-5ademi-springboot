@@ -1,5 +1,6 @@
 package com.stgsporting.honakyakon5ademi.services;
 
+import com.stgsporting.honakyakon5ademi.dtos.QuizCreateDTO;
 import com.stgsporting.honakyakon5ademi.dtos.QuizDTO;
 import com.stgsporting.honakyakon5ademi.entities.Question;
 import com.stgsporting.honakyakon5ademi.entities.Quiz;
@@ -29,7 +30,7 @@ public class QuizService {
         this.responseRepository = responseRepository;
     }
 
-    public void createQuiz(QuizDTO quizDTO) {
+    public void createQuiz(QuizCreateDTO quizDTO) {
         Quiz quiz = new Quiz();
         quiz.setDate(quizDTO.getDate());
         quizRepository.save(quiz);
