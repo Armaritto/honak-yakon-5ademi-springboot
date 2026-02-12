@@ -14,6 +14,7 @@ public class QuizDTO {
     private Long id;
     private List<QuestionDTO> questionDTOS;
     private Date date;
+    private String name;
 
     public void setQuestionDTOManually(List<Question> questions) {
         questionDTOS = new ArrayList<>();

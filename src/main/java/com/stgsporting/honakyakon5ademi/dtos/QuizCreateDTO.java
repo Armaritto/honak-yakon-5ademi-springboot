@@ -11,4 +11,5 @@ import java.util.List;
 public class QuizCreateDTO {
     private List<QuestionDTO> questionDTOS;
     private Date date;
+    private String name;
 }

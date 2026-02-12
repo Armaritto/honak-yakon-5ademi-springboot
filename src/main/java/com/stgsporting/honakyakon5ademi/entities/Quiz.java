@@ -27,4 +27,7 @@ public class Quiz extends BaseEntity {
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Response> responses;
+
+    @Column(name = DatabaseEnum.name, nullable = false)
+    private String name;
 }

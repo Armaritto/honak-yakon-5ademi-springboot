@@ -33,6 +33,7 @@ public class QuizService {
     public void createQuiz(QuizCreateDTO quizDTO) {
         Quiz quiz = new Quiz();
         quiz.setDate(quizDTO.getDate());
+        quiz.setName(quizDTO.getName());
         quizRepository.save(quiz);
         List<Question> questions = new ArrayList<>();
         for(int i=0; i<quizDTO.getQuestionDTOS().size(); i++){
@@ -67,6 +68,7 @@ public class QuizService {
             QuizDTO dto = new QuizDTO();
             dto.setDate(quiz.get().getDate());
             dto.setQuestionDTOManually(quiz.get().getQuestions());
+            dto.setName(quiz.get().getName());
             dto.setId(quiz.get().getId());
             return dto;
         }
