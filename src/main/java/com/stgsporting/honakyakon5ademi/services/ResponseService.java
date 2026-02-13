@@ -1,6 +1,8 @@
 package com.stgsporting.honakyakon5ademi.services;
 
+import com.stgsporting.honakyakon5ademi.dtos.KhedmasDTO;
 import com.stgsporting.honakyakon5ademi.dtos.ResponseDTO;
+import com.stgsporting.honakyakon5ademi.dtos.UserResponseDTO;
 import com.stgsporting.honakyakon5ademi.entities.Question;
 import com.stgsporting.honakyakon5ademi.entities.Quiz;
 import com.stgsporting.honakyakon5ademi.entities.Response;
@@ -10,8 +12,11 @@ import com.stgsporting.honakyakon5ademi.exceptions.QuizNotFoundException;
 import com.stgsporting.honakyakon5ademi.repositories.QuestionRepository;
 import com.stgsporting.honakyakon5ademi.repositories.QuizRepository;
 import com.stgsporting.honakyakon5ademi.repositories.ResponseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -47,5 +52,13 @@ public class ResponseService {
                 throw new QuestionNotFoundException("Question Not Found");
             answerService.createAnswer(responseDTO.getAnswerTexts().get(i), question.get(), response.getId());
         }
+    }
+
+    public Page<UserResponseDTO> getAllResponses(Pageable pageable, Date date) {
+        return responseRepository.getResponseAndAnswerByDate(pageable, date);
+    }
+
+    public Page<UserResponseDTO> getResponsesByKhedma(Pageable pageable, Date date, Long khedmaId) {
+        return responseRepository.getResponseAndAnswerByDateAndKhedma(pageable, date, khedmaId);
     }
 }
