@@ -24,6 +24,9 @@ public class ValidPasswordHandler extends LoginHandler{
             AuthInfo authUserInfo = new AuthInfo();
             authUserInfo.setUserId(this.auth.getId());
             authUserInfo.setUsername(this.auth.getUsername());
+            if (this.auth.getKhedma() != null) {
+                authUserInfo.setKhedmaName(this.auth.getKhedma().getName());
+            }
 
             return authUserInfo;
         } else {

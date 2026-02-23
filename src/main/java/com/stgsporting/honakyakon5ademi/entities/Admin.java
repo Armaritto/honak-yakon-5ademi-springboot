@@ -24,4 +24,9 @@ public class Admin extends BaseEntity implements Authenticatable {
 
         this.password = encoder.encode(password);
     }
+
+    @Override
+    public Khedma getKhedma() {
+        return null;
+    }
 }

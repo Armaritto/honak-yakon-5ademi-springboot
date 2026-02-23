@@ -6,4 +6,5 @@ public interface Authenticatable {
     Long getId();
     String getUsername();
     String getPassword();
+    Khedma getKhedma();
 }
