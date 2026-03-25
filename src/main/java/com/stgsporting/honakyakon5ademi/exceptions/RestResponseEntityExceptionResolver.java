@@ -60,6 +60,11 @@ public class RestResponseEntityExceptionResolver extends ResponseEntityException
         return handleExceptionDefault(ex, HttpStatus.BAD_REQUEST, request);
     }
 
+    @ExceptionHandler(value = { QuizAlreadyFoundException.class })
+    protected ResponseEntity<Object> QuizDuplicate(QuizAlreadyFoundException ex, WebRequest request) {
+        return handleExceptionDefault(ex, HttpStatus.BAD_REQUEST, request);
+    }
+
     private ResponseEntity<Object> handleExceptionDefault(Exception ex, HttpStatus status, WebRequest request) {
         JSONObject response = new JSONObject();
         response.put("message", ex.getMessage());

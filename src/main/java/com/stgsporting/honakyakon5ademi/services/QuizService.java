@@ -5,6 +5,7 @@ import com.stgsporting.honakyakon5ademi.dtos.QuizDTO;
 import com.stgsporting.honakyakon5ademi.entities.Question;
 import com.stgsporting.honakyakon5ademi.entities.Quiz;
 import com.stgsporting.honakyakon5ademi.entities.User;
+import com.stgsporting.honakyakon5ademi.exceptions.QuizAlreadyFoundException;
 import com.stgsporting.honakyakon5ademi.exceptions.QuizNotFoundException;
 import com.stgsporting.honakyakon5ademi.repositories.QuizRepository;
 import com.stgsporting.honakyakon5ademi.repositories.ResponseRepository;
@@ -31,16 +32,21 @@ public class QuizService {
     }
 
     public void createQuiz(QuizCreateDTO quizDTO) {
-        Quiz quiz = new Quiz();
-        quiz.setDate(quizDTO.getDate());
-        quiz.setName(quizDTO.getName());
-        quizRepository.save(quiz);
-        List<Question> questions = new ArrayList<>();
-        for(int i=0; i<quizDTO.getQuestionDTOS().size(); i++){
-            questions.add(questionService.createQuestion(quizDTO.getQuestionDTOS().get(i),quiz.getId()));
+        try {
+            getQuizByDate(quizDTO.getDate());
+            throw new QuizAlreadyFoundException("Quiz already exists for this date");
+        } catch (QuizNotFoundException e) {
+            Quiz quiz = new Quiz();
+            quiz.setDate(quizDTO.getDate());
+            quiz.setName(quizDTO.getName());
+            quizRepository.save(quiz);
+            List<Question> questions = new ArrayList<>();
+            for(int i=0; i<quizDTO.getQuestionDTOS().size(); i++){
+                questions.add(questionService.createQuestion(quizDTO.getQuestionDTOS().get(i),quiz.getId()));
+            }
+            quiz.setQuestions(questions);
+            quizRepository.save(quiz);
         }
-        quiz.setQuestions(questions);
-        quizRepository.save(quiz);
     }
 
     public QuizDTO getQuiz(Long id) {
